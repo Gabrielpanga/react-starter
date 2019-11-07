@@ -12,7 +12,7 @@ const Home = lazy(() => import('pages/Home'));
 const NotFound = lazy(() => import('pages/NotFound'));
 
 const routes = [
-  { path: locations.root(), component: Home },
+  { path: locations.root(), component: Home }, ,
   { path: locations.users(), component: Users },
   { path: locations.properties(), component: ListProperties },
   { path: locations.newProperty(), component: NewProperty },
