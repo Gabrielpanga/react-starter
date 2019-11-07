@@ -1,0 +1,14 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines", "stylelint-config-css-modules"],
+  "rules": {
+    "max-nesting-depth": null,
+    "selector-max-id": 0,
+    "color-named": null,
+    "order/properties-alphabetical-order": null,
+    "order/properties-order": [
+      ["composes"],
+      { "unspecified": "bottomAlphabetical" },
+    ],
+  }
+}

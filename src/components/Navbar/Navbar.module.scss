@@ -1,0 +1,17 @@
+.list {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+
+  a {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+
+    &:hover {
+      background-color: blue;
+      border-radius: 12px;
+      color: white;
+    }
+  }
+}
