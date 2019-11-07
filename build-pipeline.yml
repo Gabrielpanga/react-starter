@@ -1,0 +1,38 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger: 
+  - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- task: DockerCompose@0
+  displayName: 'Build image'
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Azure'
+    azureContainerRegistry: '{"loginServer":"gabrielcodelitt.azurecr.io", "id" : "/subscriptions/3d875e0d-1e89-4e37-9099-816a39f8eeeb/resourceGroups/default/providers/Microsoft.ContainerRegistry/registries/gabrielcodelitt"}'
+    dockerComposeFile: '**/docker-compose.production.yml'
+    projectName: react-starter-codelitt
+    additionalImageTags: $(Build.BuildId)
+    action: 'Build services'
+
+- task: DockerCompose@0
+  displayName: 'Push image'
+  inputs:
+    containerregistrytype: 'Azure Container Registry'
+    azureSubscription: 'Azure'
+    azureContainerRegistry: '{"loginServer":"gabrielcodelitt.azurecr.io", "id" : "/subscriptions/3d875e0d-1e89-4e37-9099-816a39f8eeeb/resourceGroups/default/providers/Microsoft.ContainerRegistry/registries/gabrielcodelitt"}'
+    dockerComposeFile: '**/docker-compose.production.yml'
+    action: 'Push services'
+    projectName: react-starter-codelitt
+    additionalImageTags: $(Build.BuildId)
