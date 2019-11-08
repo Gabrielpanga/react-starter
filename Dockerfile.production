@@ -1,6 +1,6 @@
 # PRODUCTION dockerfile.
 
-FROM node:12.13.0 as build
+FROM node:10.17-slim as build
 
 RUN apt-get update
 

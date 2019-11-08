@@ -1,6 +1,6 @@
 # DEVELOPMENT dockerfile.
 
-FROM node:12.13.0
+FROM node:10.17-slim
 
 RUN apt-get update
 
